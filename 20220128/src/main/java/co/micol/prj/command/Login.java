@@ -15,14 +15,14 @@ public class Login implements Command {
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 		MemberService memberDao = new MemberServiceImpl();
 		MemberVO vo = new MemberVO();
-		HttpSession session = request.getSession(); //세션 객체를 가져온다
+		HttpSession session = request.getSession(); //세션 객체를 가져온다 , 세션의 범위는 어플리케이션 전역
 		
 		vo.setId(request.getParameter("id"));
 		vo.setPassword(request.getParameter("password"));
 		
 		vo = memberDao.memberselect(vo);
 		if(vo != null) { //vo가 존재한다면
-			session.setAttribute("id", vo.getId()); // id 저장
+			session.setAttribute("id", vo.getId()); // 세션에 id 저장 ,값을 담아놔야 로그인이 유지됨 , id를 세션 변수로 쓰겠다
 			session.setAttribute("author", vo.getAuthor());//권한을 저장
 			session.setAttribute("name", vo.getName()); //이름을 저장
 			request.setAttribute("message", vo.getName() + "님 환영합니다.");

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="co.micol.prj.member.service.MemberMapper">
+<mapper namespace="co.micol.prj.member.service.MemberMapper"> <!-- .멥퍼 인터페이스 이름으로 변경 -->
 	<select id="memberSelectList" resultType="co.micol.prj.member.vo.MemberVO">
 	  SELECT * FROM MEMBER
 	</select>
@@ -9,7 +9,7 @@
 		SELECT * FROM MEMBER
 		WHERE ID = #{id}
 		<if test="password != null">
-			AND PASSWORD = #{password}
+			AND PASSWORD = #{password} <!-- AND 연산자는 두 개의 조건을 모두 만족시켜야 검색가능(로그인할때) -->
 		</if>
 	</select>
 	
@@ -24,7 +24,7 @@
 	
 	<update id="memberUpdate" parameterType="co.micol.prj.member.vo.MemberVO">
 		update member 
-		<if test="password != null">SET PASSWORD =#{password}</if>
+		<if test="password != null">SET PASSWORD =#{password}</if> <!-- 널값으로 안넘어오면 변경 -->
 		<if test="name != null">SET NAME =#{name}</if>
 		<if test="tel != null">SET TEL =#{tel}</if>
 		<if test="address != null">SET ADDRESS =#{address}</if>
@@ -32,9 +32,9 @@
 		WHERE ID = #{id}
 	</update>
 	
-	<!-- is가 들어가면 false 가 디폴트값 -->
+	<!-- mybatis는 0이면 false 1이면 true , 대부분 메소드를 만들때 is를 쓰게되면  false가 디폴트값 -->
 	<select id="isIdCheck" parameterType="String" resultType="boolean">
 		SELECT CASE WHEN COUNT(*) = 1 THEN 0 ELSE 1 END AS T
-		FROM MEMBER WHERE ID = #{id} 
+		FROM MEMBER WHERE ID = #{id}<!-- id값은 파라미터값과 동일해야됨 -->
 	</select>
 </mapper>

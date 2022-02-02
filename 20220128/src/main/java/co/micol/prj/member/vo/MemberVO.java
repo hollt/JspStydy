@@ -3,7 +3,7 @@ package co.micol.prj.member.vo;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
+@Setter //롬복 세터 게터
 @Getter
 public class MemberVO {
 	private String id;

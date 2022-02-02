@@ -17,10 +17,10 @@
 			<!-- 메뉴부분 -->
 			<ul>
 				<li><a class="active" href="main.do">Home</a></li>
-				<c:if test="${empty id }">
+				<c:if test="${empty id }"> <!-- 세션이 가지고 있는 id가 비어있으면, 세션에 어트리뷰트 해준 매게변수 id값 -->
 					<li><a href="loginForm.do">Login</a></li>
 				</c:if>
-				<c:if test="${not empty id }"> <!-- 아이디가 비어있지 않을때 보여줘라 -->
+				<c:if test="${not empty id }"> <!-- 아이디가 값이 담겨있으면 보여줘라 -->
 					<li><a href="logout.do">LogOut</a></li>
 				</c:if>
 				<li><a href="#">Contact</a></li>

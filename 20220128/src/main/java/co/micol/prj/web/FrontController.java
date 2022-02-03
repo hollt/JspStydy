@@ -16,6 +16,10 @@ import co.micol.prj.command.Login;
 import co.micol.prj.command.LoginForm;
 import co.micol.prj.command.Logout;
 import co.micol.prj.command.MainCommand;
+import co.micol.prj.command.NoticeList;
+import co.micol.prj.command.NoticeSelect;
+import co.micol.prj.command.NoticeWrite;
+import co.micol.prj.command.NoticeWriteForm;
 
 
 @WebServlet("*.do")
@@ -32,10 +36,13 @@ public class FrontController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		//명령그룹
 		map.put("/main.do", new MainCommand()); //Home Page  //요청,요청에대한 초기화값
-		map.put("/loginForm.do", new LoginForm());
-		map.put("/login.do", new Login());
-		map.put("/logout.do", new Logout());
-		
+		map.put("/loginForm.do", new LoginForm());//loginForm
+		map.put("/login.do", new Login());//login
+		map.put("/logout.do", new Logout());//logout
+		map.put("/noticeList.do", new NoticeList());//공지사항 리스트
+		map.put("/noticeSelect.do", new NoticeSelect());//공지사항 세부내용보기
+		map.put("/noticeWriteForm.do", new NoticeWriteForm());//글쓰기폼
+		map.put("/noticeWrite.do", new NoticeWrite());//글등록
 	}
 
 	
